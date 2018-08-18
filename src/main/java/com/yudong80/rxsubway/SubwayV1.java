@@ -11,7 +11,7 @@ import okhttp3.Response;
 public class SubwayV1 {
 	private static final String URL = 
 			"http://swopenapi.seoul.go.kr/api/subway/" + 
-	        "sample" + //user key 
+	        "sample" + //user key를 넣어야 합니다 
 			"/xml/realtimeStationArrival/0/5/서울";
 	
 	private OkHttpClient client = new OkHttpClient();
@@ -23,11 +23,13 @@ public class SubwayV1 {
 		client.newCall(request).enqueue(new Callback() {
 			@Override
 			public void onFailure(Call call, IOException e) {
+				//실패했을 때 
 				e.printStackTrace();	
 			}
 
 			@Override
 			public void onResponse(Call call, Response response) throws IOException {
+				//결과 출력 
 				System.out.println(response.body().string());
 			} 			
 		});
