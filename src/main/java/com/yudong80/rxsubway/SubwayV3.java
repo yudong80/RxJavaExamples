@@ -6,7 +6,10 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.yudong80.common.CommonUtils;
+
 import io.reactivex.Single;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -26,14 +29,16 @@ public class SubwayV3 {
 	 */
 	public void run() { 
 		getSubwaySingle(URL)
-//			.subscribeOn(Schedulers.io()) //running background
+			.subscribeOn(Schedulers.io()) //running background
 			.onErrorReturnItem(cache)
 			.map(this::valueOrCahced)
 			.map(this::parseData)
-//			.observeOn(Schedulers.newThread()) //like foreground
+			.observeOn(Schedulers.newThread()) //like foreground
 			.subscribe(
 				System.out::println,   //정상적인 결과는 System.out 으로 출력
 				System.err::println);  //오류는 System.err에 출력
+		
+		CommonUtils.sleep(1000); //이건 왜 필요할까? 
 	}
 	
     public String valueOrCahced(String text) {

@@ -12,7 +12,7 @@ public class SubwayV1 {
 	private static final String URL = 
 			"http://swopenapi.seoul.go.kr/api/subway/" + 
 	        "sample" + //user key를 넣어야 합니다 
-			"/xml/realtimeStationArrival/0/5/서울";
+			"/xml/realtimeStationArrival/0/5/광화문";
 	
 	private OkHttpClient client = new OkHttpClient();
 		
